@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Fotos de Perros</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Fotos Aleatorias de Perros</h1>
+    <button onclick="getRandomDog()">Mostrar Perro</button>
+    <div id="dogContainer"></div>
+  </div>
+
+  <script>
+    async function getRandomDog() {
+      const dogContainer = document.getElementById('dogContainer');
+      try {
+        const response = await fetch('https://dog.ceo/api/breeds/image/random');
+        const data = await response.json();
+        dogContainer.innerHTML = `<img src="${data.message}" alt="Perro" />`;
+      } catch (error) {
+        dogContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
